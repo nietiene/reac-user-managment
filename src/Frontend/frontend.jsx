@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+// import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const Frontend = () => {
     const [user, setUser] = useState([]);
@@ -23,6 +25,8 @@ const Frontend = () => {
 
  return (
     <div>
+        <h1>List of user</h1>
+        <Link to="/insert">Add New</Link>
          <table border={2}>
          <thead>
             <tr>            
