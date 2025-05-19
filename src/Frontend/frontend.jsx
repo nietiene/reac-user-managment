@@ -8,7 +8,7 @@ const Frontend = () => {
 
     useEffect(() => {
         setLoading(true);
-        axios.get('http://localhost:3000/', {withCredentials: true})
+        axios.get('http://localhost:3000/api/users', {withCredentials: true})
         .then((resp) => {
             setLoading(false);
             setUser(resp.data);
