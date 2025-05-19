@@ -7,33 +7,39 @@ const Frontend = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get('http://localhost:3000/')
-        .then((res) => {
-            setUser(res.data);
-        }).catch ((err) => setError(err.message));
-    });
+        setLoading(true);
+        axios.get('http://localhost:3000', {withCredentials: true})
+        .then((resp) => {
+            setLoading(false);
+            setUser(resp.data);
+        }).catch (err =>{
+            setLoading(false);
+            setError(err);
+            });
+    }, []);
 
- if (err) return <div>{error}</div>
+ if (error) return <div>{error.message}</div>
  if (loading) return <div>Loading.....</div>
 
  return (
     <div>
-         <table>
-            <tr>
-
-            
-            <th>id</th>
-            <th>Name</th>
-            <th>Password</th>
-
+         <table border={2}>
+         <thead>
+            <tr>            
+              <th>id</th>
+              <th>Name</th>
+              <th>Password</th>
+            </tr>
+         </thead>
             {user.map((user) => (
                 <>
+                <tr key={user.id}>
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.password}</td>
+              </tr>
                 </>
             ))}
-            </tr>
          </table>
     </div>
  )
