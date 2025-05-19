@@ -25,10 +25,10 @@ const Update = () => {
 
         };
      updateUser();
-    }, [id])
+    }, [id]) // make user updated to each code
     const HandleUpdate = async (e) => {
         e.preventDefault();
-        setLoading(true);
+        setLoading(true); // start loading if user clicks on button
         setError(null);
         try {
         const update = await axios.post(`http://localhost:3000/update/${id}`, {
