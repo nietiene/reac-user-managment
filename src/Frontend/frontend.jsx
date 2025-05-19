@@ -37,4 +37,7 @@ const Frontend = () => {
          </table>
     </div>
  )
+
 }
+
+export default Frontend;
