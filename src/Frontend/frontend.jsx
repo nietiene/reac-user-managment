@@ -33,6 +33,7 @@ const Frontend = () => {
               <th>id</th>
               <th>Name</th>
               <th>Password</th>
+              <th colSpan={2}>Operation</th>
             </tr>
          </thead>
             {user.map((user) => (
@@ -41,6 +42,8 @@ const Frontend = () => {
                     <td>{user.id}</td>
                     <td>{user.name}</td>
                     <td>{user.password}</td>
+                    <td><Link to={`/update/${user.id}`}>Update</Link></td>
+                    <td><Link to={`/delete/${user.id}`}>Delete</Link></td>
               </tr>
                 </>
             ))}
