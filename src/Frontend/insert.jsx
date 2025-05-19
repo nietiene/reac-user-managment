@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Insert = () => {
     const [message, setMessage] = useState("");
@@ -8,6 +8,8 @@ const Insert = () => {
     const [loading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
 
    const handleAdd = async (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ const Insert = () => {
         setMessage("User Added Successfully");
         setName("");
         setPassword("");
+        navigate('/');
     } catch (err) {
         setError("Something went wrong");
     } finally {

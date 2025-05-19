@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 import Frontend from "./Frontend/frontend"
 import Insert from "./Frontend/insert"
 import Update from "./Frontend/update"
+import Delete from "./Frontend/delete"
 function App() {
 
   return (
@@ -10,6 +11,7 @@ function App() {
         <Route path="/" element={ <Frontend/> }/>
         <Route path="/insert" element={ <Insert />}/>
         <Route path="/update/:id" element={ <Update />}/>
+        <Route path="/delete/:id" element={ <Delete />}/>
       </Routes>
     </Router>
   )

@@ -12,19 +12,25 @@ const Delete = () => {
    const navigate = useNavigate();
 
    useEffect(() => {
+    const deleteUser = async () => {
         setLoading(true);
         try {
-           const deleteUser = axios.get(`http://localhost:3000/${id}`, {withCredentials: true});
-           setMessage(deleteUser.data.message);
+           const res = await axios.get(`http://localhost:3000/${id}`, {withCredentials: true});
+           setMessage(res.data.message);
            setLoading(false);
            navigate('/');
         } catch (err) {
-            setError(deleteUser.data.message);
+            setError(err.response?.data?.message);
         } finally {
             setLoading(false);
         }
-    
-   });
+    }
+    deleteUser();
+   }, [id]);
+
+   if (error) return <div style={{ color: 'red'}}>{error}</div>
+   if (loading) return <div style={{color: 'green'}}>Deleting...</div>
+   if (message) return <div>{message}</div>
 }
 
 export default Delete
