@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 
@@ -15,12 +15,12 @@ const Delete = () => {
     const deleteUser = async () => {
         setLoading(true);
         try {
-           const res = await axios.get(`http://localhost:3000/${id}`, {withCredentials: true});
+           const res = await axios.get(`http://localhost:3000/delete/${id}`, {withCredentials: true});
            setMessage(res.data.message);
            setLoading(false);
            navigate('/');
         } catch (err) {
-            setError(err.response?.data?.message);
+            setError(err.data.message);
         } finally {
             setLoading(false);
         }
