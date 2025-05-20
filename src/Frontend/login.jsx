@@ -1,35 +1,42 @@
-import { useState, useEffect } from "react";
-import { data, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
-    e.preventDefault();
+      e.preventDefault();
 
+      if (!name && !password) {
+        setError("Both name and password are required");
+        return;
+      }
      try {
-        const res = await axios.get("http://localhost:3000/login", {name, password}, {withCredentials: true}); 
-
-        if (res.data === "Welcome Admin!") {
+        const res = await axios.post("http://localhost:3000/login", {name, password}, {withCredentials: true}); 
+        if (res.data === 'Invalid credentials') {
+           setError('Invalid username or password');
+        
+        } else if (res.data.role === "admin") {
             alert("Logged In as Admin");
-            navigate('/admin');
-        } else {
-            alert("Login Successfully");
-            name('/dashboard')
-        }
-     } catch (err) {
-        setError(err.response?.data || "Login Failed");
+            navigate('/admin'); 
+          
+     } else {
+           alert('Login successfully');
+           navigate('/dashboard');
+     }
+    }catch (err) {
+        setError("Login Failed");
      }
   }
 
   return (
     <div>
         <h1>Login</h1>
-        {err && <p style={{ color: 'red'}}>{error}</p>}
+        {error && <p style={{ color: 'red'}}>{error}</p>}
 
         <form onSubmit={handleLogin} method="post">
             <label htmlFor="">Name</label>
@@ -38,11 +45,11 @@ const Login = () => {
             /> <br />
 
             <label htmlFor="">Password</label>
-            <input type="text" name="password" placeholder="Enter Password"
+            <input type="password" name="password" placeholder="Enter Password"
             onChange={(e) => setPassword(e.target.value)}
             /> <br />
 
-            <button>Submit</button>
+            <button type="submit">Login</button>
         </form>
     </div>
   )
