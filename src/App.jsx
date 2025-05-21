@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={ <Frontend/> }/>
+        <Route path="/api/users" element={ <Frontend/> }/>
         <Route path="/insert" element={ <Insert />}/>
         <Route path="/update/:id" element={ <Update />}/>
         <Route path="/delete/:id" element={ <Delete />}/>

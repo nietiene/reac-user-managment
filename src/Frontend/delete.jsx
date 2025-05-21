@@ -18,7 +18,7 @@ const Delete = () => {
            const res = await axios.get(`http://localhost:3000/delete/${id}`, {withCredentials: true});
            setMessage(res.data.message);
            setLoading(false);
-           navigate('/');
+           navigate('/api/users');
         } catch (err) {
             setError(err.data.message);
         } finally {

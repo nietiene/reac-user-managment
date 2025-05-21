@@ -50,7 +50,7 @@ const Insert = () => {
          <button disabled={loading}>
             {loading ? "Adding..." : "Add User"}
          </button>
-        <Link to="/">Cancel</Link>
+        <Link to="/api/users">Cancel</Link>
         </form>
         {message && <p style={{color: 'green'}}>{message}</p>}
         {error && <p style={{color: 'red'}}>{error}</p>}

@@ -6,7 +6,7 @@ const AdminPage = () => {
 
    const handleLogout = async() => {
     try {
-      const res = await axios.get('http://localhost:3000/logout', {withCredentials: true});
+      await axios.get('http://localhost:3000/logout', {withCredentials: true});
       alert("Looged Out successfully");
       navigate('/login');
      } catch (err) {
@@ -17,7 +17,7 @@ const AdminPage = () => {
    return (
     <div>
         <h2>Welcome Admin You can manage Users</h2>
-        <Link to="/api/list">Manage Users</Link>
+        <Link to="/api/users">Manage Users</Link>
         <button onClick={handleLogout}>Logout</button>
     </div>
    )
