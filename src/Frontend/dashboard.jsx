@@ -27,7 +27,7 @@ const Dashboard = () => {
         <div>
             <h2>User Dashboard</h2>
             {user && <p>Welcome, {user.name} (Role: {user.role})</p>}
-            <Link to="/user"></Link>
+            <Link to={`user/:${user.id}`}>Modify your data</Link>
             <button onClick={handleLogout}>Logout</button>
         </div>
     )

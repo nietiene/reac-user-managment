@@ -6,6 +6,7 @@ import Delete from "./Frontend/delete"
 import Dashboard from "./Frontend/dashboard"
 import Login from "./Frontend/login"
 import AdminPage from "./Frontend/admin"
+import UserPage from "./Frontend/userPage"
 function App() {
 
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin" element={<AdminPage />} />
+        <Route path="/user/:id" element={<UserPage />}></Route>
       </Routes>
     </Router>
   )
