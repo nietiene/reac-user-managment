@@ -27,7 +27,7 @@ const Frontend = () => {
     <div>
         <h1>List of user</h1>
         <Link to="/insert">Add New</Link>
-         <table border={2}>
+         <table border={2} cellPadding={5} cellSpacing={2}>
          <thead>
             <tr>            
               <th>id</th>
