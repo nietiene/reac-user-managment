@@ -18,7 +18,7 @@ const Dashboard = () => {
     }, []);
 
     const handleLogout = async () => {
-        await  axios.get('/http://localhost:3000/logout', {}, {withCredentials: true})
+        await  axios.get('http://localhost:3000/logout', {withCredentials: true})
         navigate('/login');
     };
 

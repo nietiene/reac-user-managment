@@ -11,7 +11,7 @@ const Login = () => {
   const handleLogin = async (e) => {
       e.preventDefault();
 
-      if (!name && !password) {
+      if (!name || !password) {
         setError("Both name and password are required");
         return;
       }
