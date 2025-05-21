@@ -16,10 +16,21 @@ const Frontend = () => {
             setUser(resp.data);
         }).catch (err =>{
             setLoading(false);
-            setError(err);
+           if (error.response) {
+            if (err.response.status === 403) {
+                setError({message: "Access Denied (Admin only.)"});
+            } else if (err.response.status === 401) {
+                setError({ message: "Unauthorized: please login first"});
+            } else {
+                setError({ message: err.response.data.message || "Some thing"})
+            }
+           }
             });
     }, []);
 
+ if (error && error.message === "Access Denied (Admin only.)") {
+    return  <div><h2>{error.message}</h2></div>
+ }   
  if (error) return <div>{error.message}</div>
  if (loading) return <div>Loading.....</div>
 
