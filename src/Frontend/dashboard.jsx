@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
     const [user, setUser] = useState(null);
@@ -27,6 +27,7 @@ const Dashboard = () => {
         <div>
             <h2>User Dashboard</h2>
             {user && <p>Welcome, {user.name} (Role: {user.role})</p>}
+            <Link to="/user"></Link>
             <button onClick={handleLogout}>Logout</button>
         </div>
     )
