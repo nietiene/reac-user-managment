@@ -17,8 +17,8 @@ const Login = () => {
       }
      try {
         const res = await axios.post("http://localhost:3000/login", {name, password}, {withCredentials: true}); 
-        if (res.data === 'Invalid credentials') {
-           setError('Invalid username or password');
+        if (res.data.error) {
+           setError(res.data.error);
         
         } else if (res.data.role === "admin") {
             alert("Logged In as Admin");
