@@ -11,16 +11,23 @@ const UpdateUserPage = () => {
     const { id } = useParams();
     useEffect(() => {
         const FetchUserData = async()=> {
+          try {  
             setLoading(true);
-            const res = await axios.get(`http://localhost:300/${id}`, {withCredentials: true});
-            setName(res.data.user.name);
-            setPassword(res.data.user.password);
+            const res = await axios.get(`http://localhost:3000/update/${id}`, {withCredentials: true});
+            setName(res.data.name);
+            setPassword(res.data.password);
             setLoading(false);
+        } catch (err) {
+            setLoading(false);
+            setError(err.message)
+        }
         }
 
         FetchUserData();   
  }, [id]);
 
+ if (error) return <div>{error}</div>
+ if (loading) return <div>Loading......</div>
  return (
     <div>
         <label htmlFor="">Name</label>
@@ -30,7 +37,7 @@ const UpdateUserPage = () => {
         /> <br />
 
         <label htmlFor="">Password</label>
-        <input type="text" name="passwrod" 
+        <input type="passwrod" name="passwrod" 
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         /> <br />
