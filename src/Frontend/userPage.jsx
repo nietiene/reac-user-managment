@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const UserPage = () => {
     const [user, setUser] = useState(null);
@@ -32,7 +32,7 @@ const UserPage = () => {
     <div>       
              <li>Name:{user.name}</li>
              <li>Password:{user.password}</li>
-         
+             <Link to={`/update/${id}`}>Change name or password</Link>
     </div>
   )
 }

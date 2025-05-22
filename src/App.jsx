@@ -7,6 +7,7 @@ import Dashboard from "./Frontend/dashboard"
 import Login from "./Frontend/login"
 import AdminPage from "./Frontend/admin"
 import UserPage from "./Frontend/userPage"
+import UpdateUserPage from "./Frontend/updateUserPage"
 function App() {
 
   return (
@@ -19,7 +20,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/user/:id" element={<UserPage />}></Route>
+        <Route path="/user/:id" element={<UserPage />} />
+        <Route path="/update/:id" element={<UpdateUserPage/>} />
       </Routes>
     </Router>
   )
