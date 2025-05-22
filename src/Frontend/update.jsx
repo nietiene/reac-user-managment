@@ -16,7 +16,7 @@ const Update = () => {
     useEffect(() => {
         const updateUser = async () => {
          try {
-            const res = await axios.get(`http://localhost:3000/update/${id}`, {withCredentials: true});
+            const res = await axios.get(`http://localhost:3000/admin/update/${id}`, {withCredentials: true});
             setPassword(res.data.user.password);      
             setName(res.data.user.name);      
             } catch (err) {
@@ -31,13 +31,13 @@ const Update = () => {
         setLoading(true); // start loading if user clicks on button
         setError(null);
         try {
-        const update = await axios.post(`http://localhost:3000/update/${id}`, {
+        const update = await axios.post(`http://localhost:3000/admin/update/${id}`, {
             name,
             password,
         }, { withCredentials: true });
 
         setMessage(update.data.message);
-        navigate('/');
+        navigate('/api/users');
     }catch (err) {
         setError("Update failed");
     } finally {

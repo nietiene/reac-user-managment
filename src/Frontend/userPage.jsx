@@ -32,7 +32,7 @@ const UserPage = () => {
     <div>       
              <li>Name:{user.name}</li>
              <li>Password:{user.password}</li>
-             <Link to={`/update/${id}`}>Change name or password</Link>
+             <Link to={`/user/update/${id}`}>Change name or password</Link>
     </div>
   )
 }

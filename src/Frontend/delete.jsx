@@ -15,7 +15,7 @@ const Delete = () => {
     const deleteUser = async () => {
         setLoading(true);
         try {
-           const res = await axios.get(`http://localhost:3000/delete/${id}`, {withCredentials: true});
+           const res = await axios.get(`http://localhost:3000/admin/delete/${id}`, {withCredentials: true});
            setMessage(res.data.message);
            setLoading(false);
            navigate('/api/users');

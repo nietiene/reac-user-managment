@@ -15,13 +15,13 @@ function App() {
       <Routes>
         <Route path="/api/users" element={ <Frontend/> }/>
         <Route path="/insert" element={ <Insert />}/>
-        <Route path="/update/:id" element={ <Update />}/>
-        <Route path="/delete/:id" element={ <Delete />}/>
+        <Route path="/admin/update/:id" element={ <Update />}/>
+        <Route path="/admin/delete/:id" element={ <Delete />}/>
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin" element={<AdminPage />} />
-        <Route path="/user/:id" element={<UserPage />} />
-        <Route path="/update/:id" element={<UpdateUserPage/>} />
+        <Route path="/user/user/:id" element={<UserPage />} />
+        <Route path="/user/update/:id" element={<UpdateUserPage/>} />
       </Routes>
     </Router>
   )

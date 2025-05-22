@@ -12,10 +12,11 @@ const UpdateUserPage = () => {
     
     const { id } = useParams();
     useEffect(() => {
-        const FetchUserData = async()=> {
+        const FetchUserData = async (e) => {
+         e.preventDefault();
           try {  
             setLoading(true);
-            const res = await axios.get(`http://localhost:3000/update/${id}`, {withCredentials: true});
+            const res = await axios.get(`http://localhost:3000/user/update/${id}`, {withCredentials: true});
             setName(res.data.name);
             setPassword(res.data.password);
             setLoading(false);
@@ -33,9 +34,9 @@ const UpdateUserPage = () => {
         const HandleUpdateLogic = async () => {
             try {
                 setLoading(true);
-                await axios.post(`http://localhost:3000/update/${id}`, {name, password}, {withCredentials: true});
+                await axios.post(`http://localhost:3000/user/update/${id}`, {name, password}, {withCredentials: true});
                 setLoading(false);
-                navigate(`/update/${id}`);
+                navigate(`/user/user/${id}`);
             } catch (err) {
                 setLoading(false);
                 setError(err.message);
@@ -45,20 +46,22 @@ const UpdateUserPage = () => {
  if (loading) return <div>Loading......</div>
  return (
     <div>
-        <label>Name</label>
-        <input type="text" name="name" 
-        onChange={(e) => setName(e.target.value)}
-        value={name}
-        /> <br />
+        <form onSubmit={HandleUpdateLogic} method="post">
+           <label>Name</label>
+           <input type="text" name="name" 
+           onChange={(e) => setName(e.target.value)}
+           value={name}
+           /> <br />
 
-        <label>Password</label>
-        <input type="password" name="password" 
-        onChange={(e) => setPassword(e.target.value)}
-        value={password}
-        /> <br />
+           <label>Password</label>
+           <input type="password" name="password" 
+           onChange={(e) => setPassword(e.target.value)}
+           value={password}
+           /> <br />
       
-      <button onClick={HandleUpdateLogic}>{loading ? "Updating..." : "Update"}</button>
-      <Link to={`/user/${id}`}></Link>
+          <button onClick={HandleUpdateLogic}>{loading ? "Updating..." : "Update"}</button>
+          <Link to={`/user/user/${id}`}></Link>
+        </form>
     </div>
  )
 }
