@@ -25,14 +25,14 @@ const UserPage = () => {
 
   if (error) return <div>{error}</div>
   if (loading) return <div>Loading.....</div>
-  if (!user) return null;
+  if (!user) return <div>No user found</div>;
 
 
   return (
     <div>       
                 
                     <li>Name:{user.name}</li>
-                    <li>Password:{user.passwrod}</li>
+                    <li>Password:{user.password}</li>
        
     </div>
   )
