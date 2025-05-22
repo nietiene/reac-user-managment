@@ -1,12 +1,14 @@
-import { useState, useEffect, use } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 
 const UpdateUserPage = () => {
     const [name, setName] = useState("")
     const [password, setPassword] = useState("")
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null)
+    const [error, setError] = useState(null);
+    
+    const navigate = useNavigate();
     
     const { id } = useParams();
     useEffect(() => {
@@ -19,30 +21,43 @@ const UpdateUserPage = () => {
             setLoading(false);
         } catch (err) {
             setLoading(false);
-            setError(err.message)
+            setError(err.respones?.data?.error || err.message)
         }
         }
 
         FetchUserData();   
+       
  }, [id]);
 
+ 
+        const HandleUpdateLogic = async () => {
+            try {
+                setLoading(true);
+                await axios.post(`http://localhost:3000/update/${id}`, {name, password}, {withCredentials: true});
+                setLoading(false);
+                navigate(`/update/${id}`);
+            } catch (err) {
+                setLoading(false);
+                setError(err.message);
+            }
+        }
  if (error) return <div>{error}</div>
  if (loading) return <div>Loading......</div>
  return (
     <div>
-        <label htmlFor="">Name</label>
+        <label>Name</label>
         <input type="text" name="name" 
         onChange={(e) => setName(e.target.value)}
         value={name}
         /> <br />
 
-        <label htmlFor="">Password</label>
-        <input type="passwrod" name="passwrod" 
+        <label>Password</label>
+        <input type="password" name="password" 
         onChange={(e) => setPassword(e.target.value)}
         value={password}
         /> <br />
       
-      <button>Update</button>
+      <button onClick={HandleUpdateLogic}>{loading ? "Updating..." : "Update"}</button>
       <Link to={`/user/${id}`}></Link>
     </div>
  )
