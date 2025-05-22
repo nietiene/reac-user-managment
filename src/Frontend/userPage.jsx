@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const UserPage = () => {
     const [user, setUser] = useState(null);
@@ -13,7 +13,7 @@ const UserPage = () => {
             try {
                 setLoading(true);
                 const res = await axios.get(`http://localhost:3000/user/${id}`, {withCredentials: true});
-                setUser(res.data.user[0]);
+                setUser(res.data.user);
                 setLoading(false)
             } catch (err) {
                 setLoading(false);
@@ -25,15 +25,14 @@ const UserPage = () => {
 
   if (error) return <div>{error}</div>
   if (loading) return <div>Loading.....</div>
-  if (!user) return <div>No user found</div>;
+  if (!user || user.length === 0) return <div>No user found</div>;
 
 
   return (
     <div>       
-                
-                    <li>Name:{user.name}</li>
-                    <li>Password:{user.password}</li>
-       
+             <li>Name:{user.name}</li>
+             <li>Password:{user.password}</li>
+         
     </div>
   )
 }

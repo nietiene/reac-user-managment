@@ -22,7 +22,7 @@ const Insert = () => {
         setMessage("User Added Successfully");
         setName("");
         setPassword("");
-        navigate('/');
+        navigate('/api/users');
     } catch (err) {
         setError("Something went wrong");
     } finally {
