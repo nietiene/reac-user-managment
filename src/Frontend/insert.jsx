@@ -8,6 +8,7 @@ const Insert = () => {
     const [loading, setLoading] = useState(false);
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
+    const [role, setRole] = useState("");
 
     const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ const Insert = () => {
     setMessage("");
 
     try {
-        const res = await axios.post("http://localhost:3000/add", { name, password });
+        const res = await axios.post("http://localhost:3000/add", { name, password, role });
         setMessage("User Added Successfully");
         setName("");
         setPassword("");
@@ -46,10 +47,15 @@ const Insert = () => {
          onChange={(e) => setPassword(e.target.value)}
          required
          /> <br />
+         <label htmlFor="">Role of user in system</label> <br />
+       <select name="role" onChange={(e) => setRole(e.target.value)}>
+        <option value="user">User</option>
+        <option value="admin">Admin</option>
+       </select> <br />
 
          <button disabled={loading}>
             {loading ? "Adding..." : "Add User"}
-         </button>
+         </button> <br />
         <Link to="/api/users">Cancel</Link>
         </form>
         {message && <p style={{color: 'green'}}>{message}</p>}

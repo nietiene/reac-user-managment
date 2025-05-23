@@ -22,15 +22,15 @@ const Register = () => {
         navigate('/login');
         } catch (err) {
             setLoading(true);
-            setError(res.data.error);
+            setError(res?.data?.error || "Registaration failed");
             setLoading(false);
         } finally {
             setLoading(false);
         }
     }
 
-    if (loading) return <div>Loading......</div>
-    if (error) return <div>{error.message}</div>
+    if (loading) return <div style={{ color: 'green'}}>Loading......</div>
+    if (error) return <div style={{ color: 'red'}}>{error.message}</div>
 
     return (
         <div>
