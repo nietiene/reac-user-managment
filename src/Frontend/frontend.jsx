@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 // import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Frontend = () => {
     const [user, setUser] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-
+    const navigate = useNavigate();
     useEffect(() => {
         setLoading(true);
         axios.get('http://localhost:3000/api/users', {withCredentials: true})
@@ -27,6 +27,13 @@ const Frontend = () => {
            }
             });
     }, []);
+
+    
+    const handleLogout = async () => {
+        await  axios.get('http://localhost:3000/logout', {withCredentials: true})
+        navigate('/login');
+    };
+
 
  if (error && error.message === "Access Denied (Admin only.)") {
     return  <div><h2>{error.message}</h2></div>
@@ -59,6 +66,7 @@ const Frontend = () => {
                 </>
             ))}
          </table>
+       <button onClick={handleLogout}>Logout</button>
     </div>
  )
 
