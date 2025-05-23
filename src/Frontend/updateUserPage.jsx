@@ -12,8 +12,8 @@ const UpdateUserPage = () => {
     
     const { id } = useParams();
     useEffect(() => {
-        const FetchUserData = async (e) => {
-         e.preventDefault();
+        const FetchUserData = async () => {
+        
           try {  
             setLoading(true);
             const res = await axios.get(`http://localhost:3000/user/update/${id}`, {withCredentials: true});
