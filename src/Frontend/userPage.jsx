@@ -33,7 +33,12 @@ const UserPage = () => {
              <li>Name:{user.name}</li>
              <li>Password:{user.password}</li>
              <Link to={`/user/update/${id}`}>Change name or password</Link> <br />
-             <Link to={`/dlt/${id}`}>Delete Account</Link>
+             <Link to={`/dlt/${id}`} 
+             onClick={(e) => {
+                if (!window.confirm(`Are you sure ${user.name} you want to delete you account ??`)) {
+                    e.preventDefault();
+                }
+             }}>Delete Account</Link>
     </div>
   )
 }

@@ -8,6 +8,7 @@ import Login from "./Frontend/login"
 import AdminPage from "./Frontend/admin"
 import UserPage from "./Frontend/userPage"
 import UpdateUserPage from "./Frontend/updateUserPage"
+import UserDelete from "./Frontend/userDeleteAccount"
 function App() {
 
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/user/user/:id" element={<UserPage />} />
         <Route path="/user/update/:id" element={<UpdateUserPage/>} />
+        <Route path="/dlt/:id" element={<UserDelete />}/>
       </Routes>
     </Router>
   )
