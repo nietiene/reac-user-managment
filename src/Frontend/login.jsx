@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Login = () => {
@@ -50,6 +50,7 @@ const Login = () => {
             /> <br />
 
             <button type="submit">Login</button>
+            <p>Dont you have any account ??</p><Link to={"/register"}>Sign Up</Link>
         </form>
     </div>
   )
