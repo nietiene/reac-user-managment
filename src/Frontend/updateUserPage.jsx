@@ -60,7 +60,7 @@ const UpdateUserPage = () => {
            /> <br />
       
           <button onClick={HandleUpdateLogic}>{loading ? "Updating..." : "Update"}</button>
-          <Link to={`/user/user/${id}`}></Link>
+          <Link to={`/user/user/${id}`}>Back</Link>
         </form>
     </div>
  )

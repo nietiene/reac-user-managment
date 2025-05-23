@@ -32,7 +32,8 @@ const UserPage = () => {
     <div>       
              <li>Name:{user.name}</li>
              <li>Password:{user.password}</li>
-             <Link to={`/user/update/${id}`}>Change name or password</Link>
+             <Link to={`/user/update/${id}`}>Change name or password</Link> <br />
+             {/* <Link to={`/user/user/${id}`}>Back to your Dashboard</Link> */}
     </div>
   )
 }
