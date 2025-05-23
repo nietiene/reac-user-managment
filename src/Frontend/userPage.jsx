@@ -12,7 +12,7 @@ const UserPage = () => {
         const handleUserPage = async () => {
             try {
                 setLoading(true);
-                const res = await axios.get(`http://localhost:3000/user/${id}`, {withCredentials: true});
+                const res = await axios.get(`http://localhost:3000/user/user/${id}`, {withCredentials: true});
                 setUser(res.data.user);
                 setLoading(false)
             } catch (err) {
